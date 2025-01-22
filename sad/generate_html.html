@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เปรียบเทียบราคาสินค้า</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4a90e2;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 26px;
+            font-weight: bold;
+        }
+        form {
+            background-color: white;
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            margin-top: 20px;
+            width: 100%;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            text-align: center;
+            font-size: 18px;
+            color: #4a90e2;
+            margin-top: 20px;
+        }
+        footer {
+            text-align: center;
+            background-color: #4a90e2;
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>Save Smart ระบบช่วยประหยัดอย่างชาญฉลาด </header>
+    <form onsubmit="calculatePrice(event)">
+        <h3>สินค้าชิ้นที่ 1</h3>
+        <label>ชื่อสินค้า:</label>
+        <input type="text" id="name1" required>
+        <label>ราคา (บาท):</label>
+        <input type="number" id="price1" required>
+        <label>ปริมาณ:</label>
+        <input type="number" id="quantity1" required>
+
+        <h3>สินค้าชิ้นที่ 2</h3>
+        <label>ชื่อสินค้า:</label>
+        <input type="text" id="name2" required>
+        <label>ราคา (บาท):</label>
+        <input type="number" id="price2" required>
+        <label>ปริมาณ:</label>
+        <input type="number" id="quantity2" required>
+
+        <button type="submit">เปรียบเทียบราคา</button>
+        <div class="result" id="result"></div>
+    </form>
+    <footer>สร้างโดย: EDU COM NU 65</footer>
+
+    <script>
+        function calculatePrice(event) {
+            event.preventDefault();
+            const name1 = document.getElementById('name1').value;
+            const price1 = parseFloat(document.getElementById('price1').value);
+            const quantity1 = parseFloat(document.getElementById('quantity1').value);
+
+            const name2 = document.getElementById('name2').value;
+            const price2 = parseFloat(document.getElementById('price2').value);
+            const quantity2 = parseFloat(document.getElementById('quantity2').value);
+
+            const unitPrice1 = price1 / quantity1;
+            const unitPrice2 = price2 / quantity2;
+
+            let result = '';
+            if (unitPrice1 < unitPrice2) {
+                result = `${name1} ถูกกว่าที่ ${unitPrice1.toFixed(2)} ต่อหน่วย`;
+            } else if (unitPrice1 > unitPrice2) {
+                result = `${name2} ถูกกว่าที่ ${unitPrice2.toFixed(2)} ต่อหน่วย`;
+            } else {
+                result = `${name1} และ ${name2} มีราคาเฉลี่ยเท่ากันที่ ${unitPrice1.toFixed(2)} ต่อหน่วย`;
+            }
+
+            document.getElementById('result').textContent = result;
+        }
+    </script>
+</body>
+</html>
+"""
